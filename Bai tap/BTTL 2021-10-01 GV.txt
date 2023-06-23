@@ -1,0 +1,79 @@
+- Loai FAT: FAT16
+- Số byte cho 1 sector: (2byte tai 0B)  = 0200h = 512
+- Số sector cho 1 cluster: (1 byte tai 0D) Sc = 02h = 2
+- Số sector vùng Bootsector: (2byte tái 0E) SB = 0001h = 1
+- Số bảng FAT: (1byte tai 10) NF = 02h = 2
+- Số sector cho bảng RDET (2byte tai 11) = 0200h = 512 entry * 32 / 512 = 32 sector
+- Tổng số sector trên đĩa: (4byte tai 20) Sv = 4FE0h = 20448 sector
+- Số sector cho 1 bảng FAT: (2byte tai 16) SF = 0028h = 40
+- Địa chỉ sector đầu tiên của bảng FAT1 = Sb = 1
+- Địa chỉ sector đầu tiên của bảng RDET = SB + NF* SF = 1 + 2*40 = 81 
+- Địa chỉ sector đầu tiên của vùng Data = SB + NF* SF + SRdet = 81 + 32 = 113
+
+
+Doc RDET
+1. TT/TM1:
+- Ten (11byte tai 00): SAMPLE.WHS
+- Trang thai: (1byte tai 0B): 20h = 0010 0000b --> tap tin (do bit 5 bat) 
+- Cluster bat dau: (2byte tai 14 + 2byte tai 1A) --> 0002h = 2 
+--> chiem cac cluster: 2,3,4 --> chiem cac sector: 113,114,115,116,117,118
+- Kich co: 0803h =  2051 byte
+
+2. TT/TM2
+- Ten: (doc entry phu): 
+	entry phu 1: Boot Sector N
+	entry phu 2: TFS.tpl
+--> Boot Sector NTFS.tpl
+- Trang thái: 20h = 0010 0000 --> Tap tin
+- Clustẻr bat dau: 0005h = 5
+--> chiem cac cluster: 5,6 
+--> chiem cac sector: 119,120,121,122
+- Kich co: 064Bh = 1611 byte
+
+3.
+- Ten: INODE.TPL
+- Trang thai: tap tin
+- cluster bat dau: 0007h = 7
+--> chiem cac cluster: 7,8 --> chiem cac sector: 123,124,125,126
+- kich co: 04A0h=1184 byte
+
+4.
+- Ten: TMC
+- trang thai 10h = 0001 0000 --> thu muc (bit 4 bat)
+- cluster bat dau: 9 --> chiem cac cluster: 9 
+--> chiem cac sector: 127,128
+
+	4.1
+		- ten: WINHEX.CNT
+		- trang thai: tap tin
+		- cluter bat dau: 0Bh = 11 --> chiem cluster: 11,12
+		--> chiem cac sector: 131,132,133,134
+		- kich co: 0671h = 1649byte
+
+	4.1
+		- ten: ERROR.LOG
+		- trang thai: tap tin
+		- cluter bat dau: 0Dh = 13 --> chiem cluster: 13,14
+		--> chiem cac sector: 135,136,137,138
+		- kich co: 0550h  = 1360byte
+
+
+SAMPLE.WHS
+Boot Sector NTFS.tpl
+INODE.TPL
+- TMC
+	WINHEX.CNT
+	ERROR.LOG
+
+
+move INODE.TPL vao TMC
+- RDET: 81
+- FAT1: 1
+- FAT2: 41
+- DATA: tao entry moi tren SDET tai sector 127
+	tao cluster luu tru tai: 15,16 tuong ung sector: 139,140,141,142
+
+xoa WINHEX.CNT
+- FAT1: 1
+- FAT2: 41
+- DATA: 127

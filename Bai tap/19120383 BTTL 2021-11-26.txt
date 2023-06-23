@@ -1,0 +1,26 @@
+semaphore s1 = 1; 
+semaphore s2 = 0; 
+semaphore s3 = 0; 
+semaphore s4 = 1;
+
+MakeChassis() {
+	down(s4); 
+	down(s1);
+	Produce_chassis();
+	up(s1);
+}
+
+MakeTire() {
+	Produce_tire();
+	up(s2);
+}
+
+Assemble() {
+	down(s2); 
+	down(s2); 
+	down(s2); 
+	down(s2);
+	down(s3);
+	Put_4_tires_to_chassis(); 
+	up(s4);
+}

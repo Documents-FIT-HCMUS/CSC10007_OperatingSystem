@@ -1,0 +1,35 @@
+Chương Hệ thống quản lý tập tin:
+BT:	sector vật lý <-> logic;
+	Đọc thông tin các phân vùng từ MBR
+- cấu tạo của đĩa từ -> sector vật lý <-> sector logic
+- tính dung lượng của đĩa cứng khi có h, t, s
+- thuật toán đọc đĩa: FCFS, SSTF, SCAN, C-SCAN, LOOK, C-LOOK
+- Master Boot Record
+
+Chương Hệ thống tập tin FAT: 
+BT: 	Đọc thông số của phân vùng thông qua BS;
+	Đọc cây thư mục; Thao tác;
+	Xác định loại FAT và kích cỡ bản FAT
+- Cấu trúc của tập tin FAT
+
+Chương Tiến trình
+BT:	Điều phối CPU nhiều chu kỳ;
+
+- Đa nhiệm
+- Đa chương
+- Tiến trình và các trạng thái của tiến trình
+- Điều phối CPU, các chiến lược RR, FIFO, Theo độ ưu tiên, SJF
+
+Chương Quản lý bộ nhớ
+BT:	Chuyển đổi địa logic thành vật lý (phân đoạn; phân trang), kiểm tra hợp lệ;
+	Tính EAT, EMAT
+	Tính tỉ lệ lỗi trang để đảm bảo EMAT
+	Load trang (FIFO, LRU, OPT)
+- Các dạng bộ nhớ
+- Cấp phát liên tục: First, Best, Worst-Fit
+- Cấp phát bộ nhớ không liên tục: Phân đoạn, Phân trang 
+
+Chương Đồng bộ hóa
+BT:	Semaphore
+- Truy xuất độc quyền miền găng
+- Phối hợp hoạt động giữa các tiến trình
